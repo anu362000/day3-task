@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+  <style>
+  *{
+  padding: 0px;
+  margin: 0px;
+  font-family:sans-serif;
+}
+body{
+  background-color: white;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-sign-in{
+  background-color:darkblue;
+  display: flex;
+  justify-content: center;
+  border: 1px white solid;
+  border-radius: 32px;
+  height: 450px;
+  width: 450px;
+  margin-top: 200px;
+  margin-right: 100px;
+}
+.container{
+  color: white;
+}
+.container h1{
+  color: White;
+  margin-top: 50px;
+  margin-left:107px;
+}
+.Login{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+.Login input{
+  background-color: black;
+  border: none;
+  border-bottom: 1PX solid white;
+  width: 294px;
+  height: 40PX;
+}
+.Login input:placeholder{
+  position: relative;
+  color: white;
+}
+.Login input[type=Email]{
+  color: white;
+  padding-left: 2px;
+}
+.Login i{
+  position: relative;
+  right: 25px;
+  color: blue;
+}
+.password input{
+  background-color: black;
+  border: none;
+  border-bottom: 1PX SOLID white;
+  width: 294px;
+  height: 40PX;
+}
+.password input[type=password]{
+  color: white;
+  padding-left: 2px;
+}
+.password i{
+  display: flex;
+  position: relative;
+  left: 277px;
+  color: blueviolet;
+  top: -29px;
+}
+
+.password input:placeholder{
+  position: relative;
+  color: white;
+}
+.password input[type=text]{
+  color: white;
+  padding-left: 2px;
+}
+.user-slection{
+  display: flex;
+  margin-top: 20px;
+}
+.user-slection button{
+  width: 10px;
+  height: 11px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+.user-log-in button{
+  cursor: pointer;
+  width:310px;
+  height: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: darkgreen;
+  background-color: cyan;
+}
+
+.user-slection span{
+  cursor: pointer;
+  color: blueviolet;
+}
+.user-log-in span{
+  cursor: pointer;
+  color: blueviolet;
+}
+  </style>
+</head>
+<body>
+  <div class="user-sign-in">
+    <div class="container">
+      <h1>Login Form</h1>
+      <div class="Login">
+        <input type="email" id="emailInput" name="Email" placeholder="Email Address" required>
+      </div>
+      <div class="password">
+        <input type="password" id="passwordInput" placeholder="Password" required>
+      </div>
+      <div class="user-slection">
+        <input type="checkbox" name="rad1">&nbsp &nbsp
+        <h5 class="remember">Remember me</h5>
+        <h5 class="Forget"><a href=""><span>Forgot Password?</span></a></h5>
+      </div>
+      <div class="user-log-in">
+        <h2><button id="myButton"><b>Login</b></h2></button>
+        <h5>Not a member ? <span>Signup now</span> </h5>
+      </div>
+    </div>
+  </div>
+  <script>
+     let emailInput = document.getElementById('emailInput');
+    let passwordInput = document.getElementById('passwordInput');
+    emailInput.addEventListener('focusout', function () {
+      if (!emailInput.value.includes("@")) { 
+        alert("Invalid email address");
+      }
+    });
+    passwordInput.addEventListener('focusout', function () {
+      if (passwordInput.value.length < 8) {
+        alert("Password must be at least 8 characters long");
+      }
+    });
+
+//Button-event
+ const myButton = document.getElementById('myButton');
+ myButton.addEventListener('click', function() {
+            alert('Button clicked!');
+        });
+  </script>
+</body>
+</html>

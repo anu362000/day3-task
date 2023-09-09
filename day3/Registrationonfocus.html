@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .awesome-form {
+            background: lavender;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        .awesome-form:hover {
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+
+        .awesome-form h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .awesome-form .form-control {
+            background: none;
+            border: none;
+            border-bottom: 1px solid black;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .awesome-form .form-control:focus {
+            border-color: #007BFF;
+            box-shadow: 0px 0px 5px rgba(0,123,255,0.5);
+            outline: none;
+        }
+
+        .awesome-form .btn {
+           width: 70px;
+           height: 40px;
+            border-radius: 5px;
+            background: #007BFF;
+            color: black;
+        }
+
+        .awesome-form .btn:hover {
+            background: purple;
+        }
+        .awesome-form input[type="email"],
+.awesome-form input[type="password"] {
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <form class="awesome-form">
+            <h1 class="text-center">Register Here</h1>
+            <div class="form-group">
+                <input type="text" class="form-control" id="firstNameInput" placeholder="First Name" onfocusout="validateFirstName();">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" id="lastNameInput" class="form-control" placeholder="Last Name" onfocusout="validateLastName();">
+            </div>
+            <br>
+            <div class="form-group">
+                DOB<input type="date" class="form-control" id="dobInput" onfocusout="validateAge();">
+            </div>
+            <br>
+            <div class="form-group">
+  <p id="ageDisplay" id="ageInput" onfocusout="validateAge();"></p>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="beside">
+                    <input type="number" class="form-control" placeholder="Phone Number" onfocusout="validatePhoneNumber();">
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="form-control" onfocusout="validateGender();">
+                        <option>Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="email" id="emailInput" name="Email" placeholder="Email Address" required onfocusout="validateEmail();">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Address" onfocusout="validateAddress();">
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="beside">
+                    <select class="form-control" id="stateSelect" onfocusout="updateCities();">
+                        <option value="">State</option>
+                        <option value="KARNATAKA">KARNATAKA</option>
+                        <option value="KERALA">KERALA</option>
+                        <option value="MAHARASTRA">MAHARASTRA</option>
+                        <option value="TAMILNADU">TAMILNADU</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <select class="form-control" id="citySelect">
+                        <option>City</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" onfocusout="validateUsername();">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="password" id="passwordInput" placeholder="Password" required onfocusout="validatePassword();">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Confirm Password" onfocusout="validateConfirmPassword();">
+            </div>
+            <br>
+            <button type="button" id="myButton" class="btn btn-block btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    function validateFirstName() {
+        let firstNameInput = document.getElementById('firstNameInput');
+        let firstNameValue = firstNameInput.value.trim();
+        if (firstNameValue === '') {
+            alert("First Name cannot be empty");
+        }
+    }
+    
+    function validateLastName() {
+        let lastNameInput = document.getElementById('lastNameInput');
+        let lastNameValue = lastNameInput.value.trim();
+        if (lastNameValue === '') { 
+            alert("Last Name cannot be empty");
+        }
+    }
+    
+    function validateAge() {
+        let dobInput = document.getElementById('dobInput');
+        let ageInput = document.getElementById('ageInput');
+        let dobValue = dobInput.valueAsDate;
+        let currentDate = new Date();
+        let minAge = 1;
+        if (dobValue) {
+            let age = currentDate.getFullYear() - dobValue.getFullYear();
+            if (age < minAge) {
+                alert("lease enter a valid Age.");
+            }
+            document.getElementById('ageDisplay').textContent = `Age: ${age} years`;
+        } 
+    }
+    
+    function validatePhoneNumber() {
+        let phoneNumberInput = document.querySelector('input[type="number"]');
+        let phoneNumberValue = phoneNumberInput.value.trim();
+        if (phoneNumberValue === '' || phoneNumberValue.length < 10) {
+            alert("Please enter a valid phone number.");
+        }
+    }
+    
+    function validateGender() {
+        let genderSelect = document.querySelector('select');
+        let genderValue = genderSelect.value;
+        if (genderValue === 'Gender') {
+            alert("Please select a gender.");
+        }
+    }
+    
+    function validateEmail() {
+        let emailInput = document.getElementById('emailInput');
+        let emailValue = emailInput.value.trim();
+        if (!emailValue.includes("@")) { 
+            alert("Invalid email address");
+        }
+    }
+    
+    function validateAddress() {
+        let addressInput = document.querySelector('input[placeholder="Address"]');
+        let addressValue = addressInput.value.trim();
+        if (addressValue === '') {
+            alert("Address cannot be empty");
+        }
+    }
+    
+    function updateCities() {
+        const stateSelect = document.getElementById('stateSelect');
+        const citySelect = document.getElementById('citySelect');
+        const selectedState = stateSelect.value;
+
+        citySelect.innerHTML = '<option value="">City</option>';
+
+        const cityOptions = {
+            KARNATAKA: ['Bengaluru', 'Hampi', 'Mysore'],
+            KERALA: ['Alappuzha', 'Kochi', 'Kottayam'],
+            MAHARASTRA: ['Mumbai', 'Pune', 'Thane'],
+            TAMILNADU: ['Chennai', 'Madurai', 'Salem']
+        };
+
+        if (selectedState in cityOptions) {
+            const cities = cityOptions[selectedState];
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.value = city;
+                option.textContent = city;
+                citySelect.appendChild(option);
+            });
+        }
+    }
+
+    const stateSelect = document.getElementById('stateSelect');
+    stateSelect.addEventListener('focusout', updateCities);
+    
+    function validateUsername() {
+        let usernameInput = document.querySelector('input[placeholder="Username"]');
+        let usernameValue = usernameInput.value.trim();
+        if (usernameValue === '') {
+            alert("Username cannot be empty");
+        }
+    }
+    
+    function validatePassword() {
+        let passwordInput = document.getElementById('passwordInput');
+        let passwordValue = passwordInput.value.trim();
+        if (passwordValue.length < 8) {
+            alert("Password must be at least 8 characters long");
+        }
+    }
+    
+    function validateConfirmPassword() {
+        let passwordInput = document.getElementById('passwordInput');
+        let confirmPasswordInput = document.querySelector('input[placeholder="Confirm Password"]');
+        let confirmPasswordValue = confirmPasswordInput.value.trim();
+        let passwordValue = passwordInput.value.trim();
+        if (confirmPasswordValue !== passwordValue) {
+            alert("Passwords do not match");
+        }
+    }
+//Button-event
+ const myButton = document.getElementById('myButton');
+ myButton.addEventListener('click', function() {
+            alert('Button clicked!');
+        });
+  
+</script>
+</html>

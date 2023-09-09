@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .awesome-form {
+            background: pink;
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .awesome-form:hover {
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .awesome-form h2 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .awesome-form .form-control {
+            background: none;
+            border: none;
+            border-bottom: 1px solid black;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .awesome-form .form-control:focus {
+            border-color: #007BFF;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        .awesome-form .btn {
+            width: 70px;
+            height: 40px;
+            border-radius: 5px;
+            background: #007BFF;
+            color: black;
+        }
+
+        .awesome-form .btn:hover {
+            background: grey;
+        }
+
+        .error-message {
+            font-family:Arial, Helvetica, sans-serif
+            color: black;
+            font-size:12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form class="awesome-form">
+                    <h2 class="text-center">Contact Us</h2>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="fullNameInput" placeholder="Full Name" onfocusout="validateFullName();">
+                        <!-- Add a validation message element -->
+                        <p id="fullNameError" class="error-message"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" id="emailInput" name="Email" class="form-control" placeholder="Email Address" required onfocusout="validateEmail();">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="number" class="form-control" placeholder="Phone Number" onfocusout="validatePhoneNumber();">
+                        <!-- Add a validation message element -->
+                        <p id="phoneError" class="error-message"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="messageInput" placeholder="Your message..." onfocusout="validateMessage();"></textarea>
+                        <!-- Add a validation message element -->
+                        <p id="messageError" class="error-message"></p>
+                    </div>
+
+                    <button type="button" id="myButton" class="btn btn-block btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function validateFullName() {
+        const fullNameInput = document.getElementById('fullNameInput');
+        const fullNameValue = fullNameInput.value.trim();
+        const fullNameError = document.getElementById('fullNameError');
+
+        if (fullNameValue === '') {
+            fullNameError.textContent = 'Full Name is required';
+        } else {
+            fullNameError.textContent = '';
+        }
+    }
+
+    function validateEmail() {
+        let emailInput = document.getElementById('emailInput');
+        let emailValue = emailInput.value.trim();
+        if (!emailValue.includes("@")) {
+            alert("Invalid email address");
+        }
+    }
+
+   function validatePhoneNumber() {
+    const phoneNumberInput = document.querySelector('input[type="number"]');
+    const phoneNumberValue = phoneNumberInput.value.trim();
+
+    if (phoneNumberValue === '' || phoneNumberValue.length < 10) {
+        alert("Please enter a valid phone number with at least 10 digits.");
+    }
+}
+
+    function validateMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const messageValue = messageInput.value.trim();
+        const messageError = document.getElementById('messageError');
+
+        if (messageValue === '') {
+            messageError.textContent = 'Message is required';
+        }
+    }
+//Button-event
+ const myButton = document.getElementById('myButton');
+ myButton.addEventListener('click', function() {
+            alert('Button clicked!');
+        });
+</script>
+
+</html>
